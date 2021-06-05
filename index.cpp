@@ -338,8 +338,10 @@
     
  //Registeration system
 
+ 
     void Logged()
 {
+    static int count=0;
     string pw,id;
     string fname,fpw,fid;
 
@@ -350,11 +352,11 @@
 
     ifstream file;
     file.open("data_"+id+".txt");
-    if(file.is_open())
-    { cout<<"file is open"<<endl; }
-    else
-    {cout<< "user name invalid"<<endl;}
-    // { return false; }
+    // if(file.is_open())
+    // { cout<<"file is open"<<endl; }
+    // else
+    // {cout<< "\nuser name invalid"<<endl;}
+    
     
     file>>fname;
     file>>fid;
@@ -372,9 +374,19 @@
     }
     else{
         // return false;
-        cout<< "incorrect id or password"<<endl;
+        cout<< "\nincorrect id or password"<<endl;
+        count++;
+        cout<< "\nTry Again\n"<<endl;
+        if(count==3)
+        { 
+            cout<<"\n ** WARNING!! 3 LOGIN ATTEMPTS FAILED\n TRY LATER";
+            return;
 
-        return;
+        }
+        else{
+            Logged();
+        }
+        
     }
 
 }
@@ -392,12 +404,6 @@ int main()
         cout<< "Invalid Choice\nPlease Enter Again"<<endl;
     }
     }while(choice!=1 && choice!=2 );
-
-    // if(count==3)
-    // {
-    //     cout<<"\n ** WARNING!! 3 LOGIN ATTEMPTS FAILED\n TRY LATER";
-    //     return ;
-    // }
 
     if(choice==1)
     {
