@@ -276,9 +276,8 @@
             return;
         }
         cout<<"\n\n**Account Holder List**\n";
-        // cout<<"\n  =====================\n";
         cout<<"\nA/C NO.     NAME    TYPE    BALANCE\n";
-        // cout<<"\n  =====================\n";
+       
         while(inFile.read(reinterpret_cast<char*> (&ac),sizeof(account)))
         {
             ac.show_data();
@@ -338,64 +337,6 @@
     
  //Registeration system
 
- 
-    void Logged()
-{
-    static int count=0;
-    string pw,id;
-    string fname,fpw,fid;
-
-    cout<<"Enter your User Id"<<endl;
-    cin>>id;
-    cout<<"Enter Your Password"<<endl;  
-    cin>>pw;
-
-    ifstream file;
-    file.open("data_"+id+".txt");
-    // if(file.is_open())
-    // { cout<<"file is open"<<endl; }
-    // else
-    // {cout<< "\nuser name invalid"<<endl;}
-    
-    
-    file>>fname;
-    file>>fid;
-    file>>fpw;
-    
-    cout<<fname<<endl<<fid<<endl<<fpw<<endl;
-    if(file.eof()) {cout<<"end of file reached"<<endl;}
-
-    if(id == fid && pw == fpw)
-    {
-        // return true;
-        cout<<"you are logged in "<<endl;
-        start();
-
-    }
-    else{
-        // return false;
-        cout<< "\nincorrect id or password"<<endl;
-        count++;
-        cout<< "\nTry Again\n"<<endl;
-        if(count==3)
-        { 
-            cout<<"\n ** WARNING!! 3 LOGIN ATTEMPTS FAILED\n TRY LATER";
-            return;
-
-        }
-        else{
-            Logged();
-        }
-        
-    }
-
-}
-
-int main()
-{
-    int choice;
-    string name,pw,id;
-
     do{
     cout<<"Choose 1 : to Register \nChoose 2 : Login"<<endl;
     cin>> choice;
@@ -407,8 +348,6 @@ int main()
 
     if(choice==1)
     {
-      cout<<"Enter Your Name"<<endl;  
-      cin>>name;
       cout<<"Enter your User Id"<<endl;
       cin>>id;
       cout<<"Enter Your Password"<<endl;  
@@ -416,7 +355,7 @@ int main()
 
       ofstream file;
       file.open("data_"+id+".txt");
-      file <<name<<endl<<id<<endl<<pw<<endl;
+      file <<id<<endl<<pw<<endl;
       file.close();
       cout<<"You Have Been Successfully Registered !"<<endl;
 
